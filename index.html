@@ -1,12 +1,73 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta charset="utf-8">
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>Rat viewer helper</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: #141514;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-weight: 600;
+        }
 
-        <base href="/">
-    </head>
-    <body>
-      <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSiZn9Jkx-_j5C2Dt4iSSvyTmb7jwWfd4MUumNmGx68DuyEgEDhEddGR2Xpmm3tTgoEMZotnxxNdbIF/pubhtml?widget=true&amp;headers=false"></iframe>
-    </body>
+        /* Buttons */
+        .button-container {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px; /* Space between buttons and image */
+        }
+
+        .button {
+            background-color: #ffde97;
+            color: #141514;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: background-color 0.3s ease, transform 0.2s;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .button:hover {
+            background-color: #ad936e;
+            transform: scale(1.05);
+        }
+
+        /* Image Styling */
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="button-container">
+        <a href="#" class="button">Draft</a>
+        <a href="#" class="button">Open Champs</a>
+        <a href="#" class="button">Calendar</a>
+    </div>
+
+    <div class="image-container">
+        <img src="rat.png" alt="Centered Image">
+    </div>
+
+</body>
 </html>
