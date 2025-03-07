@@ -15,10 +15,44 @@
                 margin:0;
                 overflow-y:hidden;
             }
-
+            .navbar {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: #141514;
+                padding: 1rem;
+                border-bottom: 2px solid #ad936e;
+            }
+            .navbar .center {
+                display: flex;
+                justify-content: center;
+                flex-grow: 1;
+            }
+            .navbar a {
+                color: #ffde97;
+                text-decoration: none;
+                font-size: 1rem;
+                padding: 0.5rem 1rem;
+                margin: 0 0.5rem;
+                transition: color 0.3s ease;
+            }
+                .navbar a:hover {
+                color: #ad936e;
+            }
+                .navbar .right {
+                margin-left: auto;
+            }
         </style>
     </head>
     <body>
+        <nav class="navbar">
+            <div class="center">
+                <a href="#" id="draft">Draft</a>
+                <a href="#" id="openChamps">Open Champs</a>
+                <a href="#" id="calendar">Calendar</a>
+            </div>
+            <a href="#" id="contact" class="right">Contact</a>
+        </nav>
         <iframe overflow="hidden" scrolling="no" frameBorder="0" width="100%" style="overflow:hidden;border:0;" border="0" height="100%" 
             src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSiZn9Jkx-_j5C2Dt4iSSvyTmb7jwWfd4MUumNmGx68DuyEgEDhEddGR2Xpmm3tTgoEMZotnxxNdbIF/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false">
         </iframe>
