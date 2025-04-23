@@ -1,0 +1,15 @@
+name: Daily Supabase Edge Function Trigger
+
+on:
+  schedule:
+    - cron: "0 0 * * *"  # Every day at midnight UTC
+  workflow_dispatch:     # Allows you to manually trigger it from GitHub UI
+
+jobs:
+  call-supabase-edge-function:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Supabase Edge Function
+        run: |
+          curl -X GET "https://tytnkhvjyqbdtvokpjel.supabase.co/functions/v1/swift-task" \
+          -H "Authorization: Bearer ${{ secrets.SUPABASE_EDGE_KEY }}"
