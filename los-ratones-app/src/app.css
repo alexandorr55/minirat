@@ -1,0 +1,22 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+:root {
+    --background-primary: #141514;
+    --background-secondary: #FFDE97;
+    --background-tertiary: #AD936E;
+}
+
+html, body {
+    width: 100vw;
+    height:auto;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--background-primary);
+    font-family: "Chakra Petch", sans-serif;
+    font-weight: 600;
+    overflow-x: hidden;
+}
