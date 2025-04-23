@@ -38,7 +38,7 @@
 		flex-wrap: wrap;
 		text-align:center;
 		border-radius:5px;
-		width: 95vw;
+		width: 100vw;
 		border-top: var(--background-secondary) 4px solid;
 	}
 	.footer-column {
