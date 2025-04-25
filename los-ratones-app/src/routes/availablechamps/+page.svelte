@@ -1,6 +1,11 @@
 <script>
-    import ChampionGrid from "$lib/components/availablechamps/ChampionGrid.svelte";
+  import ChampionGrid from '../../lib/components/availablechamps/ChampionGrid.svelte'; 
+  export let data; 
+  const { champUsage } = data;
 </script>
 
-<h1>Available Champs</h1>
-<ChampionGrid />
+{#if champUsage}
+  <ChampionGrid {champUsage} />
+{:else}
+  <p style="color: white;">Loading champion data...</p>
+{/if}
