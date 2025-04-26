@@ -1,6 +1,7 @@
 <script>
+	import { Img } from "flowbite-svelte";
 </script>
 
 <div class="image-container">
-	<img src="/lrteam.webp" alt="Centered" />
+	<Img src="/lrteam.webp" alt="Centered" effect="rounded-xl"/>
 </div>
