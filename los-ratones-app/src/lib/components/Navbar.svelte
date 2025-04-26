@@ -12,7 +12,7 @@
 		<span class="self-center whitespace-nowrap text-xl font-semibold">Los Ratones</span>
 	</NavBrand>
 	<NavHamburger/>
-	<NavUl activeUrl={page.url.pathname} activeClass="text-lion-500" nonActiveClass="text-peachYellow-200">
+	<NavUl activeUrl={page.url.pathname} activeClass="text-lion-500" nonActiveClass="text-peachYellow-200" ulClass="bg-night-800">
 		<NavLi href="/draft">Draft</NavLi>
 		{@render VerticalSeperator()}
 		<NavLi href="/availablechamps">Available Champs</NavLi>
