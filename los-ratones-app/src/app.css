@@ -3,6 +3,7 @@
 @plugin 'flowbite/plugin';
 
 @custom-variant dark (&:where(.dark, .dark *));
+@source "../node_modules/flowbite-svelte/dist";
 
 @theme {
 	--primary: #141514;
@@ -20,7 +21,7 @@
 		cursor: pointer;
 	}
 }
-@source "../node_modules/flowbite-svelte/dist";
+
 
 html,
 body {

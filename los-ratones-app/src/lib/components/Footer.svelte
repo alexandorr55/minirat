@@ -1,4 +1,6 @@
 <script>
+	import { Footer, FooterLinkGroup, FooterLink } from "flowbite-svelte";
+
 	export let players = [
 		{ name: 'Caedrel', twitch: 'Caedrel', twitter: 'Caedrel', youtube: 'Caedrel', merch: 'https://losratones.shop/' },
 		{ name: 'Baus', twitch: 'thebausffs', twitter: 'thebausffs', youtube: 'channel/UCu7ODDeIZ4x1rJwM1LCVL8w', dpm: 'Thebausffs' },
@@ -9,62 +11,21 @@
 	];
 </script>
 
-<footer class="footer">
-	{#each players as player}
-		<div class="footer-column">
-			<h3>{player.name}</h3>
-			<ul>
-				<li><a href={`https://twitch.tv/${player.twitch}`} target="_blank"><i class="fa-brands fa-twitch"></i> Twitch</a></li>
-				<li><a href={`https://x.com/${player.twitter}`} target="_blank"><i class="fa-brands fa-x-twitter"></i> Twitter</a></li>
-				<li><a href={`https://www.youtube.com/${player.youtube}`} target="_blank"><i class="fa-brands fa-youtube"></i> Youtube</a></li>
+<Footer footerType="sitemap" class="bg-night-900 border-t-2 border-peachYellow-200 w-screen mt-8">
+	<div class="grid grid-cols-2 gap-8 px-6 py-8 md:grid-cols-3 lg:grid-cols-6 lg:w-4/5 lg:mx-auto">
+		{#each players as player}
+			<FooterLinkGroup ulClass="text-lion-500 ">
+				<h3 class="text-lg underline font-semibold text-peachYellow-200">{player.name}</h3>
+				<FooterLink classLi="hover:text-peachYellow-200" href={`https://twitch.tv/${player.twitch}`} target="_blank"><i class="fa-brands fa-twitch"></i> Twitch</FooterLink>
+				<FooterLink classLi="hover:text-peachYellow-200" href={`https://x.com/${player.twitter}`} target="_blank"><i class="fa-brands fa-x-twitter"></i> Twitter</FooterLink>
+				<FooterLink classLi="hover:text-peachYellow-200" href={`https://www.youtube.com/${player.youtube}`} target="_blank"><i class="fa-brands fa-youtube"></i> Youtube</FooterLink>
 				{#if player.merch}
-					<li><a href={player.merch} target="_blank"><i class="fa-solid fa-shirt"></i> LR Merch</a></li>
+					<FooterLink classLi="hover:text-peachYellow-200" href={player.merch} target="_blank"><i class="fa-solid fa-shirt"></i> LR Merch</FooterLink>
 				{/if}
 				{#if player.dpm}
-					<li><a href={`https://dpm.lol/pro/${player.dpm}`} target="_blank"><i class="fa-solid fa-magnifying-glass"></i> DPM.lol</a></li>
+					<FooterLink classLi="hover:text-peachYellow-200" href={`https://dpm.lol/pro/${player.dpm}`} target="_blank"><i class="fa-solid fa-magnifying-glass"></i> DPM.lol</FooterLink>
 				{/if}
-			</ul>
-		</div>
-	{/each}
-</footer>
-
-<style>
-	.footer {
-		margin-top:40px;
-		color: var(--color-lion-500);
-		padding: 20px;
-		display: flex;
-		justify-content: space-between;
-		flex-wrap: wrap;
-		text-align:center;
-		border-radius:5px;
-		width: 100vw;
-		border-top: var(--color-peachYellow-200) 4px solid;
-	}
-	.footer-column {
-		flex: 1;
-		min-width: 150px;
-		margin: 10px;
-	}
-	.footer-column h3 {
-		font-size: 20px;
-		margin-bottom: 10px;
-		text-decoration: underline;
-	}
-	.footer-column ul {
-		list-style: none;
-		padding: 0;
-	}
-	.footer-column ul li {
-		margin-bottom: 8px;
-	}
-	.footer-column ul li a {
-		text-decoration: none;
-		color: var(--color-lion-500);
-		font-size:15px;
-	}
-	.footer-column ul li a:hover {
-		text-decoration: underline;
-		color: var(--color-peachYellow-200);
-	}
-</style>
+			</FooterLinkGroup>
+		{/each}
+	</div>					
+</Footer>

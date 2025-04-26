@@ -6,7 +6,7 @@
 	let props = $props();
 </script>
 
-<Navbar class="bg-night-800 text-peachYellow-200 px-8 sm:px-24" fluid={true}>
+<Navbar class="bg-night-800 text-peachYellow-200 px-8 sm:px-24 border-b-2 mb-4 border-peachYellow-200" fluid={true}>
 	<NavBrand href="/">
 		<Img src="/los-ratones-logo.png" alt="Los Ratones Logo" class="me-3 h-6 sm:h-9" />
 		<span class="self-center whitespace-nowrap text-xl font-semibold">Los Ratones</span>
