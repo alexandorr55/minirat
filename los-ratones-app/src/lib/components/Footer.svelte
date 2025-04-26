@@ -31,7 +31,7 @@
 <style>
 	.footer {
 		margin-top:40px;
-		color: var(--background-tertiary);
+		color: var(--color-lion-500);
 		padding: 20px;
 		display: flex;
 		justify-content: space-between;
@@ -39,7 +39,7 @@
 		text-align:center;
 		border-radius:5px;
 		width: 100vw;
-		border-top: var(--background-secondary) 4px solid;
+		border-top: var(--color-peachYellow-200) 4px solid;
 	}
 	.footer-column {
 		flex: 1;
@@ -60,11 +60,11 @@
 	}
 	.footer-column ul li a {
 		text-decoration: none;
-		color: var(--background-tertiary);
+		color: var(--color-lion-500);
 		font-size:15px;
 	}
 	.footer-column ul li a:hover {
 		text-decoration: underline;
-		color: var(--background-secondary);
+		color: var(--color-peachYellow-200);
 	}
 </style>

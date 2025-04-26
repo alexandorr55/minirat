@@ -1,22 +1,38 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
+@plugin 'flowbite/plugin';
 
-:root {
-    --background-primary: #141514;
-    --background-secondary: #FFDE97;
-    --background-tertiary: #AD936E;
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+	--primary: #141514;
+
+	--color-night-800: #141514;
+
+	--color-peachYellow-200: #ffde97;
+
+	--color-lion-500: #ad936e;
 }
 
-html, body {
-    width: 100vw;
-    height:auto;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background-color: var(--background-primary);
-    font-family: "Chakra Petch", sans-serif;
-    font-weight: 600;
-    overflow-x: hidden;
+@layer base {
+	button,
+	[role='button'] {
+		cursor: pointer;
+	}
+}
+@source "../node_modules/flowbite-svelte/dist";
+
+html,
+body {
+	width: 100vw;
+	height: auto;
+	margin: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	background-color: var(--color-night-800);
+	font-family: 'Chakra Petch', sans-serif;
+	font-weight: 600;
+	overflow-x: hidden;
 }
