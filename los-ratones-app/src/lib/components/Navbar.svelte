@@ -13,11 +13,11 @@
 	</NavBrand>
 	<NavHamburger/>
 	<NavUl activeUrl={page.url.pathname} activeClass="text-lion-500" nonActiveClass="text-peachYellow-200" ulClass="bg-night-800 flex flex-col p-4 mt-4 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:text-sm md:font-medium">
-		<NavLi href="/draft">Draft</NavLi>
+		<NavLi href="/draft" data-sveltekit-preload-data="hover">Draft</NavLi>
 		{@render VerticalSeperator()}
-		<NavLi href="/availablechamps">Available Champs</NavLi>
+		<NavLi href="/availablechamps" data-sveltekit-preload-data="hover">Available Champs</NavLi>
 		{@render VerticalSeperator()}
-		<NavLi href="/calendar">Calendar</NavLi>
+		<NavLi href="/calendar" data-sveltekit-preload-data="hover">Calendar</NavLi>
 		{@render VerticalSeperator()}
 		<NavLi>
 			<span class="cursor-pointer" id="Contact">Contact</span>
