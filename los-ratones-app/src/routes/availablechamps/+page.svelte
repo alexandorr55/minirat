@@ -1,42 +1,50 @@
 <script lang="ts">
-	import type { ChampionPlayerInfo, ChampionPlayerStats } from '$lib/constants/types/ChampionPlayerStats.js';
-	import { Img, Span } from 'flowbite-svelte';
+	import type { ChampionEntry } from '$lib/constants/types/ChampionTypes.js';
+	import { Heading, Img, P, Popover, Span } from 'flowbite-svelte';
+	import { blur, scale } from 'svelte/transition';
   
   let { data } = $props();
-  console.log('Available Champions Data:', data);
 
-  // Any champion with player stats is a played champion
-  const playedChampoions: ChampionPlayerInfo = {};
-  
-  // Any champion without player stats is an unplayed champion
-  const unplayedChampoions: ChampionPlayerInfo = {};
+  const playedChamps: ChampionEntry[] = data.playedChamps;
+	const unplayedChamps: ChampionEntry[] = data.unplayedChamps;
 
-  
+	function sanitizeId(name: string): string {
+    return name.replace(/[^a-zA-Z0-9-_]/g, '-');
+  }
+
 </script>
 
 
+<Heading color="text-peachYellow-200 text-center" class="uppercase border-b-2 mb-8 py-4">Champions Played</Heading>
+<div class="flex flex-wrap gap-4 justify-center">
+  {#each playedChamps as champData}
+    {@render loadChampion(champData)}
+  {/each}
+</div>
+<Heading color="text-peachYellow-200 text-center" class="uppercase border-b-2 my-8 py-4">Unplayed Champions</Heading>
+<div class="flex flex-wrap gap-4 justify-center">
+  {#each unplayedChamps as champData}
+    {@render loadChampion(champData)}
+  {/each}
+</div>
 
-<!-- Two sections, played and unplayed champions -->
-<section class="played-champions">
-  <h2>Played Champions</h2>
-  <div class="grid">
-    {#each Object.entries(playedChampoions) as [name, data]}
-      <div class="champion-icon">
-        <Img src={data[1].iconUrl} alt={name} class="icon" />
-        <Span class="icon-name">{name}</Span>
-      </div>
-    {/each}
+{#snippet loadChampion(champData: ChampionEntry)}
+  <div id={sanitizeId(champData[0])} class="sm:w-1/18 w-1/5 text-center justify-center">
+    <Img src={champData[1].iconUrl} alt={champData[0]}/>
+    <Span class="icon-name text-peachYellow-200">{champData[0]}</Span>
+    {#if champData}
+      <Popover trigger="hover" triggeredBy="#{sanitizeId(champData[0])}" title={champData[0]} transition={blur} class="w-64">
+        {#each Object.entries(champData[1].players) as [playerName, playerStats]}
+          <P class="font-bold">{playerName}</P>
+          <P>Played: {playerStats.total}</P>
+          <P>Winrate: {playerStats.winrate * 100}%</P> 
+          <P>Wins: {playerStats.wins}</P>
+          <P>Losses: {playerStats.losses}</P>
+          {#if Object.entries(champData[1].players).length > 1 && playerName !== Object.entries(champData[1].players).slice(-1)[0][0]}
+            <hr class="my-2"/>
+          {/if}
+        {/each}
+      </Popover>
+    {/if}
   </div>
-</section>
-
-<section class="unplayed-champions">
-  <h2>Unplayed Champions</h2>
-  <div class="grid">
-    {#each Object.entries(unplayedChampoions) as [name, data]}
-      <div class="champion-icon">
-        <Img src={data[1].iconUrl} alt={name} class="icon" />
-        <Span class="icon-name">{name}</Span>
-      </div>
-    {/each}
-  </div>
-</section>
+{/snippet}

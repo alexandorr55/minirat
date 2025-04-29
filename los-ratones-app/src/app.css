@@ -25,15 +25,46 @@
 
 html,
 body {
-	width: 100vw;
-	height: auto;
-	margin: 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	background-color: var(--color-night-800);
-	font-family: 'Chakra Petch', sans-serif;
-	font-weight: 600;
-	overflow-x: hidden;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--color-night-800);
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 600;
+  overflow-x: hidden; /* prevent accidental horizontal scroll */
+  -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
+  scrollbar-width: thin;             /* Firefox */
+  scrollbar-color: transparent transparent; /* Firefox */
 }
+
+body::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  transition: background-color 0.3s;
+}
+
+body:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+*, *::before, *::after {
+	box-sizing: inherit;
+  }
+  

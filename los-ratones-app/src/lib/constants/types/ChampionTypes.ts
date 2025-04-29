@@ -5,10 +5,6 @@ export type PlayerStats = {
 	winrate: number; // between 0 and 1
 };
 
-export type PlayerStatsWithName = {
-	[playerName: string]: PlayerStats | null;
-};
-
 export type ChampionPlayerStats = {
 	[championName: string]: {
 		[playerName: string]: PlayerStats;
@@ -16,8 +12,15 @@ export type ChampionPlayerStats = {
 };
 
 export type ChampionPlayerInfo = {
-	[championName: string]: {
-		iconUrl: string;
-		usageData: PlayerStatsWithName[];
+	iconUrl: string;
+	players: {
+		[playerName: string]: PlayerStats;
 	};
+};
+
+export type ChampionEntry = [championName: string, data: ChampionPlayerInfo];
+
+export type CombinedChampData = {
+	playedChamps: ChampionEntry[];
+	unplayedChamps: ChampionEntry[];
 };

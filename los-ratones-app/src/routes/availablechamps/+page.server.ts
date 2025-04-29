@@ -1,35 +1,49 @@
 import { championNameToId } from '$lib/constants/champions';
 import type {
-	ChampionPlayerInfo,
+	ChampionEntry,
 	ChampionPlayerStats,
-	PlayerStatsWithName
-} from '$lib/constants/types/ChampionPlayerStats';
+	CombinedChampData,
+} from '$lib/constants/types/ChampionTypes';
 
-export async function load() {
+export async function load(): Promise<{ playedChamps: ChampionEntry[]; unplayedChamps: ChampionEntry[] }> {
 	const res = await fetch(
 		'https://tytnkhvjyqbdtvokpjel.supabase.co/storage/v1/object/public/json-data-public/champs-data.json'
 	);
 	const champUsage: ChampionPlayerStats = await res.json();
 
-	// This function will return the URL of the champion's icon
-	const getIconUrl = (id: number) =>
-		`https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/${id}.png`;
+	const combinedData = combineChampData(champUsage);
 
-	// Create a new array with the champion name, icon URL, and usage data
-	const championInfo = Object.entries(championNameToId).reduce((acc, [name, id]) => {
-		const championName = name.replace(/_/g, ' ');
-		acc[championName] = {
-			iconUrl: getIconUrl(id),
-			usageData: Object.entries(champUsage[championName] || {}).reduce(
-				(usageAcc, [playerName, stats]) => {
-					usageAcc[playerName] = stats ? { ...stats } : null; // Ensure we copy the stats object or set it to null
-					return usageAcc;
+	return combinedData;
+}
+
+function getIconUrl(id: number): string {
+	return `https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/${id}.png`;
+}
+
+function combineChampData(champUsage: ChampionPlayerStats): CombinedChampData {
+	const allChamps: ChampionEntry[] = Object.entries(championNameToId).map(
+		([champName, champId]) => {
+			const players = champUsage[champName] ?? {};
+
+			const entry: ChampionEntry = [
+				champName,
+				{
+					iconUrl: getIconUrl(champId),
+					players,
 				}
-			)
-		};
-	}, {});
+			];
 
-	return {
-		championInfo
-	};
+			return entry;
+		}
+	);
+
+	const playedChamps = allChamps.filter(
+		([, data]) => Object.keys(data.players).length > 0
+	);
+
+	const unplayedChamps = allChamps.filter(
+		([, data]) => Object.keys(data.players).length === 0
+	);
+
+	return { playedChamps, unplayedChamps };
 }
