@@ -2,7 +2,23 @@
   import { Label, Input, Select, Textarea, Datepicker, P, Button } from 'flowbite-svelte';
 
   export let data;
-  const calendardata = data.calendardata.calendardata ?? [];
+
+  // to get past stupid "idk what type u are" warnings
+  type Score = {
+  lr_score: string;
+  opponent_score: string;
+  opponent_name: string;
+};
+
+  type CalendarEvent = {
+    event_type: string;
+    date: string;
+    description: string;
+    scores: Score[];
+  };
+
+  const calendardata: CalendarEvent[] = data.calendardata.calendardata ?? [];
+
 
   let selected = '';
   let selectedDate: Date | null = null;
@@ -144,7 +160,6 @@
     <Textarea
       id="description"
       name="description"
-      rows="4"
       placeholder="Event description..."
       bind:value={description}
     />
