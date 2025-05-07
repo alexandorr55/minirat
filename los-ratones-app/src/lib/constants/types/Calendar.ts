@@ -22,19 +22,19 @@ export function getMonthName(month: number): string {
 
 export type EventType = 'of' | 'sc' | 'va'; // Official, Scrims, Variety
 
-export type ScoreEntry {
+export type ScoreEntry = {
   lr_score: string;          // maybe they should be ints idk
   opponent_score: string;
   opponent_name: string;
 }
 
-export type CalendarEvent {
+export type CalendarEvent = {
   event_type: EventType;
   date: string;              // maybe this sound be DateTime_UTC idk
   description: string;
   scores: ScoreEntry[];     // see above
 }
 
-export type CalendarData {
+export type CalendarData = {
   calendardata: CalendarEvent[];
 }
