@@ -19,3 +19,22 @@ export function getMonthName(month: number): string {
 	}
 	return months[month as keyof typeof months];
 }
+
+export type EventType = 'of' | 'sc' | 'va'; // Official, Scrims, Variety
+
+export interface ScoreEntry {
+  lr_score: string;          // maybe they should be ints idk
+  opponent_score: string;
+  opponent_name: string;
+}
+
+export interface CalendarEvent {
+  event_type: EventType;
+  date: string;              // maybe this sound be DateTime_UTC idk
+  description: string;
+  scores: ScoreEntry[];     // see above
+}
+
+export interface CalendarData {
+  calendardata: CalendarEvent[];
+}
