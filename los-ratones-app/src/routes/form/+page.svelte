@@ -63,13 +63,15 @@
       });
 
       const result = await res.json();
-
       if (!res.ok) throw new Error(result.error || 'Unknown error');
-      alert('Event submitted successfully!');
+      alert('Event submitted successfully! Please wait five minutes and then refresh before putting in another action.');
+      // Reset fields after successful submit
+      location.reload()
     } catch (err) {
       console.error('Submission failed:', err);
       alert('Error submitting event. Check the console for details.');
     }
+      
   };
 
   const handleDelete = async () => {
@@ -78,8 +80,12 @@
       return;
     }
 
-    const isoToDelete = selectedDate.toISOString();
-    const filteredEvents = calendardata.filter((event) => event.date !== isoToDelete);
+    const deleteDate = selectedDate.toISOString().split('T')[0]; // "2025-05-02"
+
+    const filteredEvents = calendardata.filter((event) => {
+      const eventDate = event.date.split('T')[0];
+      return eventDate !== deleteDate;
+    });
 
     const updatedPayload = { calendardata: filteredEvents };
 
@@ -91,12 +97,18 @@
       });
 
       const result = await res.json();
+
       if (!res.ok) throw new Error(result.error || 'Unknown error');
-      alert('Events deleted for selected date!');
+      alert('Events deleted for selected date! Please wait five minutes and then refresh before putting in another action.');
+      // Reset fields after successful submit
+      location.reload();
+
     } catch (err) {
       console.error('Delete failed:', err);
       alert('Error deleting events. Check the console for details.');
     }
+
+
   };
 
   const handleAddScore = async () => {
@@ -133,7 +145,9 @@
 
       const result = await res.json();
       if (!res.ok) throw new Error(result.error || 'Unknown error');
-      alert('Score added to event!');
+      alert('Score added to event! Please wait five minutes and then refresh before putting in another action.');
+      // Reset fields after successful submit
+      location.reload()
     } catch (err) {
       console.error('Score addition failed:', err);
       alert('Error adding score. Check the console for details.');
