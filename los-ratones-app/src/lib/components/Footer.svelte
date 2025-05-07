@@ -1,7 +1,7 @@
 <script>
 	import { Footer, FooterLinkGroup, FooterLink } from "flowbite-svelte";
 
-	export let players = [
+	let players = [
 		{ name: 'Caedrel', twitch: 'Caedrel', twitter: 'Caedrel', youtube: 'Caedrel', merch: 'https://losratones.shop/' },
 		{ name: 'Baus', twitch: 'thebausffs', twitter: 'thebausffs', youtube: 'channel/UCu7ODDeIZ4x1rJwM1LCVL8w', dpm: 'Thebausffs' },
 		{ name: 'Velja', twitch: 'velja_lol', twitter: 'Velja_LOL', youtube: '@Velja_lol', dpm: 'Velja' },
